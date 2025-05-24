@@ -31,4 +31,6 @@ npm install zustand
 layout.tsx have to add 
 <LoginModal />  in layout.tsx 
 
+# This branch is Front only no backend  code (Django)
+
 
