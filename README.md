@@ -34,3 +34,6 @@ layout.tsx have to add
 # This branch is Front only no backend  code (Django)
 
 
+Implement Next.js with backend(Django)
+Config nextjs render image
+-next.config.ts
