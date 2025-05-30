@@ -51,3 +51,9 @@ Config nextjs render image
 >npm install world-countries
 >npm install react-date-range
 >npm i --save-dev @types/react-date-range
+
+### install web socket
+>npm install react-use-websocket
+>npm install socket.io socket.io-client
+
+
