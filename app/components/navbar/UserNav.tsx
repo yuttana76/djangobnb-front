@@ -1,13 +1,22 @@
 'use client'
 
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 import MenuLink from "./MenuLink"
 
 import useLoginModal from "@/app/hooks/useLoginModal"
 import useSignupModal from "@/app/hooks/useSignupModal"
+import LogoutButton from "../LogoutButton"
 
-const UserNav = () => {
+interface UserNavProps {
+  userId?: string | null;
+}
 
+const UserNav: React.FC<UserNavProps> = ({
+  userId
+}) => {
+
+  const router = useRouter();
   const loginModal = useLoginModal();
   const signupModel = useSignupModal();
 
@@ -32,20 +41,58 @@ const UserNav = () => {
 
         {isOpen &&(
           <div className="w-[220px] absolute top-[60px] right-0 bg-white border border-gray-200 rounded-xl shadow-md flex flex-col cursor-pointer">
-            <MenuLink 
-              label="Log in" 
-              onClick={() => {
-                // console.log("Log in clicked");
-                setIsOpen(false);
-                loginModal.open();
-                // loginModal.increase()
-                // console.log("loginModal.isOpen after open:", loginModal.isOpen);
-              }} />
+            {userId?(
+              // LOGOUT_BUTTON
+              <>
+               <MenuLink
+                      label='My properties'
+                      onClick={() => {
+                          setIsOpen(false);
+                          router.push('/myproperties');
+                      }}
+                  />
 
-            <MenuLink label="Sign up" onClick={() => {
-              setIsOpen(false);
-              signupModel.open();
-            }} />
+                <MenuLink
+                    label='My favorites'
+                    onClick={() => {
+                        setIsOpen(false);
+                        router.push('/myfavorites');
+                    }}
+                />
+
+                <MenuLink
+                      label='My reservations'
+                      onClick={() => {
+                          setIsOpen(false);
+                          router.push('/myreservations');
+                      }}
+                  />
+
+                <LogoutButton onClick={() => {
+                  setIsOpen(false);
+                }} />
+              </>
+              // setIsOpen(false);
+            ):(
+              <>
+              {/* LOGIN_BUTTON */}
+                <MenuLink 
+                label="Log in" 
+                onClick={() => {
+                  // console.log("Log in clicked");
+                  setIsOpen(false);
+                  loginModal.open();
+                  // loginModal.increase()
+                  // console.log("loginModal.isOpen after open:", loginModal.isOpen);
+                }} />
+
+                {/* SIGNUP  */}
+                <MenuLink label="Sign up" onClick={() => {
+                  setIsOpen(false);
+                  signupModel.open();
+                }} />
+              </>
+            )}
             
           </div>
         )}

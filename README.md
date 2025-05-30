@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+https://www.youtube.com/watch?v=psB9vBxPqvE&list=PLpyspNLjzwBnP-906FBRP5qzB4YXjMvnT&index=13
+
+https://github.com/SteinOveHelset/djangobnb/blob/main/app/components/modals/AddPropertyModal.tsx
+
+Users for testing
+
+xxx@gmail.com
+xxx@password
 
 ## Getting Started
 
@@ -37,3 +45,9 @@ layout.tsx have to add
 Implement Next.js with backend(Django)
 Config nextjs render image
 -next.config.ts
+
+### install ext lib
+
+>npm install world-countries
+>npm install react-date-range
+>npm i --save-dev @types/react-date-range

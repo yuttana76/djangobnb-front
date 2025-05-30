@@ -11,7 +11,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     onClick
 }) => {
 
-    console.log("CLS:"+className)
   return (
     <div 
     onClick={onClick}
