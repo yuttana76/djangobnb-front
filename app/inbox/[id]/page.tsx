@@ -6,6 +6,8 @@ import { getAccessToken } from "../../lib/actions";
 import { UserType } from '../page';
 import apiService from '@/app/services/apiService';
 
+import { use } from "react";
+
 export type MessageType = {
   id: string;
   name: string;
@@ -16,10 +18,13 @@ export type MessageType = {
 }
 
 
-const ConversationPage = async ({ params }: { params: {id: string }}) => {
-  
+// const ConversationPage = async ({ params }: { params: { id: string }}) => {
+
+const ConversationPage = async ({params}: {params: Promise<{ id: string }>}) =>{
+
+const { id } = await params;
+
   const userId = await getUserId();
-  
   const token = await getAccessToken();
 
   if (!userId || !token) {
@@ -29,8 +34,9 @@ const ConversationPage = async ({ params }: { params: {id: string }}) => {
           </main>
       )
   }
-
-  const conversation = await apiService.get(`/api/chat/${params.id}/`)  
+  
+  // const conversation = await apiService.get(`/api/chat/${params.id}/`)  
+  const conversation = await apiService.get(`/api/chat/${id}/`)  
 
   return (
     <main className="max-w-[1500px] mx-auto px-6 pb-6 ">

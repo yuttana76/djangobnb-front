@@ -7,14 +7,14 @@ services:
       - airbnb_app
     links:
       - airbnb_app
-    container_name: revproxy
+    container_name: revproxy-airbnb
     build: nginx
     # image: nginx:latest
     image: reverse-proxy
     ports:
       - 80:80
     networks:
-      - reverse
+      - airbnb_nt
 
   airbnb_app:
     build:
@@ -29,5 +29,5 @@ services:
       - PORT=3000
 
 networks:
-  reverse:
+  airbnb_nt:
     driver: bridge

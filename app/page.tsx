@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Categories from "./components/Categories";
 import PropertyList from "./components/properties/PropertyList";
 
@@ -7,7 +8,11 @@ export default function Home() {
       <Categories />
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+      <Suspense>
         <PropertyList />
+      </Suspense>
+        
       </div>
     </main>
   );

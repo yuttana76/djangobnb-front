@@ -3,10 +3,14 @@ import PropertyList from '@/app/components/properties/PropertyList'
 import apiService from '@/app/services/apiService'
 import Image from 'next/image'
 import { getUserId } from "@/app/lib/actions";
+import { Suspense } from 'react';
 
-const LandlordDetailPage = async ({ params }: { params: { id: string }}) => {
+// const LandlordDetailPage = async ({ params }: { params: { id: string }}) => {
+    const LandlordDetailPage = async ({params}: {params: Promise<{ id: string }>}) =>{
 
-    const landlord = await apiService.get(`/api/auth/${params.id}`)
+    const { id } = await params;
+        
+    const landlord = await apiService.get(`/api/auth/${id}`)
     const userId = await getUserId();
 
   return (
@@ -26,10 +30,10 @@ const LandlordDetailPage = async ({ params }: { params: { id: string }}) => {
 
                     <h1 className='mt-6 text-2xl'>{landlord.name}</h1>
 
-                    {userId != params.id && (
+                    {userId != id && (
                         <ContactButton 
                             userId={userId}
-                            landlordId={params.id}
+                            landlordId={id}
                         />
                     )}
                     
@@ -39,14 +43,16 @@ const LandlordDetailPage = async ({ params }: { params: { id: string }}) => {
 
             <div className='col-span-1 md:col-span-3 pl-0 md:pl-6'>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-                    <PropertyList 
-                        landlord_id={params.id}
-                    />
+                    <Suspense>
+                        <PropertyList 
+                            landlord_id={id}
+                        />
+                    </Suspense>
+                    
                 </div>
             </div>
         </div>
     </main>
-
     
   )
 }

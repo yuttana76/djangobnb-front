@@ -60,3 +60,14 @@ Config nextjs render image
 ### Deployment
 change .env.prod
 -next.config.ts
+```
+docker compose up --build
+```
+
+### Clear caches before build
+```
+rm -rf .next
+rm -rf node_modules
+rm package-lock.json  # If you use npm
+npm install           # If you use npm
+```

@@ -4,8 +4,12 @@ import apiService from "@/app/services/apiService";
 import { getUserId } from "@/app/lib/actions";
 import Link from 'next/link';
 
-const PropertyDetailPage = async ({params}: { params: {id: string }}) => {
-  const property = await apiService.get(`/api/properties/${params.id}`);
+// const PropertyDetailPage = async ({params}: { params: {id: string }}) => {
+const PropertyDetailPage = async ({params}: {params: Promise<{ id: string }>}) =>{
+
+  const { id } = await params;
+  
+  const property = await apiService.get(`/api/properties/${id}`);
   const userId = await getUserId();
 
   // console.log(property)
