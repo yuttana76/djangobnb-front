@@ -57,3 +57,6 @@ Config nextjs render image
 >npm install socket.io socket.io-client
 
 
+### Deployment
+change .env.prod
+-next.config.ts
