@@ -28,4 +28,6 @@ services:
       - NODE_ENV=production
       - PORT=3000
 
-  
+networks:
+  reverse:
+    driver: bridge
